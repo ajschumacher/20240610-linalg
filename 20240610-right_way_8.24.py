@@ -40,6 +40,63 @@ def __(np, vectors):
 
 
 @app.cell
+def __(A, np):
+    A @ np.transpose(A)
+    return
+
+
+@app.cell
+def __(A, np):
+    np.linalg.eig(np.transpose(A) @ A)
+    return
+
+
+@app.cell
+def __(A, np):
+    np.transpose(A) @ A
+    return
+
+
+@app.cell
+def __(A, np):
+    np.linalg.eig(A @ np.transpose(A))
+    return
+
+
+@app.cell
+def __(A, np):
+    left, singular, right = np.linalg.svd(A)
+    print(left)
+    print(singular)
+    print(right)
+    return left, right, singular
+
+
+@app.cell
+def __(left, np, right, singular):
+    left @ np.diag(singular) @ right
+    return
+
+
+@app.cell
+def __(left, np):
+    left @ np.transpose(left)
+    return
+
+
+@app.cell
+def __(np, right):
+    right @ np.transpose(right)
+    return
+
+
+@app.cell
+def __(np):
+    np.linalg.inv(np.array([[1, 2], [3, 4]]))
+    return
+
+
+@app.cell
 def __():
     return
 
